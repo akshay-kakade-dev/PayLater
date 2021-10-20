@@ -52,9 +52,9 @@ class CLI
     when 6
       report_dues(accept_and_format_input)
     when 7
-      report_users_at_credit_limit(accept_and_format_input)
+      report_users_at_credit_limit()
     when 8
-      report_total_dues(accept_and_format_input)
+      report_total_dues()
     when 9
       stop()
     else
@@ -73,6 +73,10 @@ class CLI
 end
 
 cli = CLI.new
-cli.list_oprions
-choice = cli.accept_operation_choice
-cli.trigger_operation(choice)
+
+while true
+  cli.list_oprions
+  choice = cli.accept_operation_choice
+  break if choice == 9
+  cli.trigger_operation(choice)
+end
