@@ -2,16 +2,19 @@ require './user'
 
 class Report
   def self.report_users_at_credit_limit
-    ObjectSpace.each_object(User).select { |user| (user.credit_limit - user.total_spent) == 0 }
+    result = ''
+    users = ObjectSpace.each_object(User).select { |user| (user.credit_limit - user.total_spent) == 0 }
+    users.each { |user| result + user.id + ', ' }
+    result
   end
 
   def self.report_total_dues
-    total_dues = 0
+    result = ''
     
     ObjectSpace.each_object(User).each do |user|
-      total_dues = total_dues + user.total_spent
+      result = result + "#{user.id}: #{user.get_due} "
     end
 
-    total_dues
+    result
   end  
 end
