@@ -3,7 +3,6 @@ require './merchant_operations'
 require './report_operations'
 require './user'
 require './merchant'
-require './report'
 
 class PayLater
   include UserOperations

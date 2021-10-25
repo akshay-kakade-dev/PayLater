@@ -4,6 +4,11 @@ module UserOperations
     user_id = input_data[0]
     email = input_data[1]
     credit_limit = input_data[2].to_i
+
+    return "user_id is not present in input" if user_id.nil?
+    return "email is not present in input" if email.nil?
+    return "credit_limit is not present in input" if credit_limit.nil?
+
     users.push(User.new(user_id, email, credit_limit))
   end
 

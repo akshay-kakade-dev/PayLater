@@ -2,6 +2,7 @@ module ReportOperations
   def report_discount(input_data)
     merchant_id = input_data[0]
     merchant = find_merchant(merchant_id)
+    return "merchant is not present for #{merchant_id}" if merchant.nil?
     merchant.display_total_discount
   end
 
@@ -15,6 +16,7 @@ module ReportOperations
   def report_users_at_credit_limit()
     users_at_credit_limit = users.select { |user| user.get_due == user.credit_limit }
     users_at_credit_limit.map { |user| user.id }
+    users_at_credit_limit.empty? ? 'No users at credit limit' : users_at_credit_limit
   end
 
   def report_total_dues()
@@ -25,6 +27,6 @@ module ReportOperations
         result = result + "#{user.id}: #{user.get_due} "
       end
     end
-    result
+    result.empty? ? 'No dues is present' : result
   end
 end

@@ -3,6 +3,11 @@ module MerchantOperations
     merchant_id = input_data[0]
     email = input_data[1]
     discount_in_per = input_data[2].to_i
+
+    return "merchant_id is not present in input" if merchant_id.nil?
+    return "email is not present in input" if email.nil?
+    return "discount_in_per is not present in input" if discount_in_per.nil?
+
     merchants.push(Merchant.new(merchant_id, email, discount_in_per))
   end
 
